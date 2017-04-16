@@ -7,8 +7,10 @@ How to use GitHub to submit code while logged into your own GitHub account:
 1.    Fork the repository.
 2.    Make the change.
 3.    Submit a pull request to the project owner.
+
+
     
-1. Fork the repository to add changes to the code stored here. 
+**Fork the repository to add changes to the code stored here.**
 
 Navigate to this repository and in the top right corner click "Fork"
 Now you have this repository reflected in your own Github account. 
@@ -23,20 +25,24 @@ into the local clone of your fork.
 This needs to be done only once:
 
 cd into the directory you created. 
-run: git remote -v (this shows you your clone of this repository. You will add changes to this)
-  > origin  https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (fetch)
-  > origin  https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (push)
+run: `git remote -v` (this shows you your clone of this repository. You will add changes to this)
+  `
+origin  https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (fetch)
+origin  https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (push)
+  `
 
 run: git remote add upstream https://github.com/araman92/AuE893F1tenthProject (this allows you to integrate
 changes in this repository with yours)
 
-To verify the new upstream repository you've specified for your fork, type git remote -v again. You should see the URL for your fork as origin, and the URL for the original repository as upstream.
-
-  > git remote -v
-  > origin    https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (fetch)
-  > origin    https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (push)
-  > upstream  https://github.com/araman92/AuE893F1tenthProject (fetch)
-  > upstream  https://github.com/araman92/AuE893F1tenthProject (push)
+To verify the new upstream repository you've specified for your fork, type `git remote -v` again. You should see the URL for your fork as origin, and the URL for the original repository as upstream.
+  
+  `
+git remote -v
+origin    https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (fetch)
+origin    https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (push)
+upstream  https://github.com/araman92/AuE893F1tenthProject (fetch)
+upstream  https://github.com/araman92/AuE893F1tenthProject (push)
+  `
 
 Now, if changes are made in the future and you want to sync your fork with the main repository again:
 
@@ -46,15 +52,17 @@ git checkout master (this will send you into your own master branch)
 
 (you can now add changes to this master branch)
 
-2. Short recap on how to add changes:
-      > git add . (your file)
-      > git commit -m "message about the update"
-      > git push origin YOUR_BRANCH (unless you created a new branch this is the default branch: master)
-      > > login with your id/password
+** Short recap on how to add changes:**
+      `
+git add . (your file)
+git commit -m "message about the update"
+git push origin YOUR_BRANCH (unless you created a new branch this is the default branch: master)
+`
+login with your id/password
 
 git merge upstream/master (this will merge your master branch with the upstream/master branch so you don't lose the changes you made in your own master branch)
 
-3. Navigate to your master branch on your repository on the webpage and submit a pull request. 
+** Navigate to your master branch on your repository on the webpage and submit a pull request. **
 
 
 
