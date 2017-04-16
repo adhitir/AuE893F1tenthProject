@@ -28,6 +28,7 @@ cd into the directory you created.
 run: `git remote -v` (this shows you your clone of this repository. You will add changes to this)
   `
 origin  https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (fetch)
+
 origin  https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (push)
   `
 
@@ -38,10 +39,15 @@ To verify the new upstream repository you've specified for your fork, type `git 
   
   `
 git remote -v
+
 origin    https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (fetch)
+
 origin    https://github.com/YOUR_USERNAME/AuE893F1tenthProject.git (push)
+
 upstream  https://github.com/araman92/AuE893F1tenthProject (fetch)
+
 upstream  https://github.com/araman92/AuE893F1tenthProject (push)
+
   `
 
 Now, if changes are made in the future and you want to sync your fork with the main repository again:
