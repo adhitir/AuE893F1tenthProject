@@ -47,7 +47,7 @@ git checkout master (this will send you into your own master branch)
 
 (you can now add changes to this master branch)
 
-** Short recap on how to add changes:**
+**Short recap on how to add changes:**
 
 git add . (your file)
 git commit -m "message about the update"
@@ -57,7 +57,7 @@ login with your id/password
 
 git merge upstream/master (this will merge your master branch with the upstream/master branch so you don't lose the changes you made in your own master branch)
 
-** Navigate to your master branch on your repository on the webpage and submit a pull request. **
+**Navigate to your master branch on your repository on the webpage and submit a pull request.**
 
 
 
