@@ -1,0 +1,117 @@
+Running the hokuyo node:
+rosrun urg_node urg_node _ip_address :=192.168.1.11
+rostopic echo /scan 
+
+Running the Teensy
+rosrun rosserial_python serial_node /dev/ttyACM*
+Rostopic echo /cmd_vel
+
+Running the depth sensor
+roslaunch openni2_launch openni2.launch 
+
+SSHing into the Jetson TK1
+
+Setting up the network bridge
+Open the Jetson and connect it to peripherals. 
+Run ifconfig. Is eth0 and eth1 connected to the ip addresses of the Ubiquiti and Hokuyo?
+If not go to network settings and switch from Hokuyo to Ubiquiti or vice versa. 
+Copy paste commands in the terminal:
+
+sudo brctl addbr br0
+sudo brctl addif br0 eth0
+sudo brctl addif br0 eth2
+sudo ifconfig br0 192.168.1.3 netmask 255.255.255.0 up
+
+To set up a persistent bridge:
+
+Edit /etc/rc.local and add the following commands before exit 0.
+
+sleep 90s
+brctl addbr br0
+brctl addif br0 eth0
+brctl addif br0 eth1
+ifconfig br0 192.168.1.X netmask 255.255.255.0 up
+
+This runs the commands in the terminal on startup. The 90 second delay is to allow the eth0 and eth1 to be recognized before the bridge is made.
+
+Run ifconfig again to see if there is a new connection called br0.
+
+SSHing from your PC
+
+ssh -X ubuntu@192.168.1.3
+
+Streaming data from the Jetson to your PC
+
+On one terminal window 
+ssh -X ubuntu@192.168.1.X
+export ROS_HOSTNAME=192.168.1.X
+roscore
+
+another tab
+ssh -X ubuntu@192.168.1.X
+export ROS_MASTER_URI=http://192.168.1.X:11311/
+export ROS_HOSTNAME=192.168.1.X
+roslaunch openni2_launch openni2.launch (or the urg_node given above for lidar)
+
+Open another terminal
+(For rviz:)
+export ROS_MASTER_URI=http://192.168.1.X:11311/
+export ROS_IP=192.168.1.YY (your pc’s ip)
+rosrun rviz rviz
+
+(for hector slam)
+export ROS_MASTER_URI=http://192.168.1.X:11311/
+export ROS_IP=192.168.1.YY (your pc’s ip)
+roslaunch hector_slam_launch turtorial.launch
+
+To see laser data in rviz:
+ Write “/laser” in fixed frame under global coordinates. 
+Select /scan topic under LaserScan 
+
+Arduino/Teensy support packages in Ubuntu
+
+Download Arduino 1.8.2 or best available version
+Save it to Documents
+Install arduino by running ./install.sh
+if error >> edit install.sh >> RESOURCE_NAME= change cc.arduino.arduinoide to arduino-arduinoide
+Download TeensyDuino, turn it into executable file and and ./filename
+follow ROSSERIAL instruction on : rosserial wiki
+add teensy board to arduino boards and check if board is being displayed and connected.
+ros_lib
+
+Keyboard teleop:
+
+Install rosserial, and rosserial-arduino, and ros teleop keyboard in TK1
+Program teensy from your own laptop  (used Sagar’s code) 
+
+SSH into the TK1, start roscore,
+Rosrun rosserial_python serial_node.py /dev/ttyACM1
+Second window
+Rostopic list to see if cmd_vel is published.
+Rostopic pub /cmd_vel geometry_msgs/Twist [0,0,0] [0,0,0] (this will cause the blinking green light to turn red)
+Rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+Increase speed to 15
+
+Hector SLAM:
+
+sudo apt-get install ros-indigo-hector-slam
+
+roscd hector_slam_launch/launch and edit tutorial.launch
+roscd hector_mapping/launch and edit mapping_default.launch
+
+Edits are described in Howard's Hector SLAM note on the repository.
+Change simulated time to "false" while working with a real LIDAR and "true" while running the simulation. 
+These edits cause the SLAM to neglect odometry data. Once the IMU is up and running, we will have to account for that.
+
+Running hector slam:
+(new window, no ssh, export hostname and ip)
+roslaunch hector_slam_launch tutorial.launch
+view the map in rviz
+
+Error while using tab completion
+
+[rospack] Warning: error while crawling /home/userpcname: boost::filesystem::status: Permission denied ... /.gvfs
+Fix:
+> sudo umount /home/userpcname/.gvfs
+> rm -rf .gvfs/
+     
