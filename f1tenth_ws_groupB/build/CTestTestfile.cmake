@@ -1,0 +1,37 @@
+# CMake generated Testfile for 
+# Source directory: /home/ubuntu/catkin_ws/src
+# Build directory: /home/ubuntu/catkin_ws/build
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+subdirs(gtest)
+subdirs(geographic_info/geographic_info)
+subdirs(rosserial/rosserial)
+subdirs(rosserial/rosserial_arduino)
+subdirs(rosserial/rosserial_mbed)
+subdirs(rosserial/rosserial_msgs)
+subdirs(rosserial/rosserial_python)
+subdirs(rosserial/rosserial_tivac)
+subdirs(rosserial/rosserial_xbee)
+subdirs(rosserial/rosserial_client)
+subdirs(hector_navigation/hector_elevation_msgs)
+subdirs(unique_identifier/unique_identifier)
+subdirs(unique_identifier/uuid_msgs)
+subdirs(geographic_info/geographic_msgs)
+subdirs(f1tenth_launch)
+subdirs(hector_navigation/hector_driving_aid_markers)
+subdirs(ros-keyboard)
+subdirs(f1tenth)
+subdirs(rosserial/rosserial_server)
+subdirs(hector_navigation/hector_elevation_visualization)
+subdirs(hector_navigation/hector_path_follower)
+subdirs(hector_navigation/hector_exploration_controller)
+subdirs(hector_navigation/hector_costmap)
+subdirs(hector_navigation/hector_elevation_mapping)
+subdirs(rosserial/rosserial_embeddedlinux)
+subdirs(rosserial/rosserial_test)
+subdirs(rosserial/rosserial_windows)
+subdirs(unique_identifier/unique_id)
+subdirs(geographic_info/geodesy)
+subdirs(hector_navigation/hector_exploration_planner)
+subdirs(hector_navigation/hector_exploration_node)
